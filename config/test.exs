@@ -1,5 +1,7 @@
 use Mix.Config
 
+config :constant_loader, ets_table_name: :my_app_constants,
+
 config :constant_loader,
   ecto_repos: [
     Ariadne.SBState.DB.Repo,
