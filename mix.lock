@@ -1,0 +1,9 @@
+%{
+  "connection": {:hex, :connection, "1.0.4", "a1cae72211f0eef17705aaededacac3eb30e6625b04a6117c1b2db6ace7d5976", [:mix], [], "hexpm"},
+  "db_connection": {:hex, :db_connection, "1.1.3", "89b30ca1ef0a3b469b1c779579590688561d586694a3ce8792985d4d7e575a61", [:mix], [{:connection, "~> 1.0.2", [hex: :connection, repo: "hexpm", optional: false]}, {:poolboy, "~> 1.5", [hex: :poolboy, repo: "hexpm", optional: true]}, {:sbroker, "~> 1.0", [hex: :sbroker, repo: "hexpm", optional: true]}], "hexpm"},
+  "decimal": {:hex, :decimal, "1.7.0", "30d6b52c88541f9a66637359ddf85016df9eb266170d53105f02e4a67e00c5aa", [:mix], [], "hexpm"},
+  "ecto": {:hex, :ecto, "2.2.11", "4bb8f11718b72ba97a2696f65d247a379e739a0ecabf6a13ad1face79844791c", [:mix], [{:db_connection, "~> 1.1", [hex: :db_connection, repo: "hexpm", optional: true]}, {:decimal, "~> 1.2", [hex: :decimal, repo: "hexpm", optional: false]}, {:mariaex, "~> 0.8.0", [hex: :mariaex, repo: "hexpm", optional: true]}, {:poison, "~> 2.2 or ~> 3.0", [hex: :poison, repo: "hexpm", optional: true]}, {:poolboy, "~> 1.5", [hex: :poolboy, repo: "hexpm", optional: false]}, {:postgrex, "~> 0.13.0", [hex: :postgrex, repo: "hexpm", optional: true]}, {:sbroker, "~> 1.0", [hex: :sbroker, repo: "hexpm", optional: true]}], "hexpm"},
+  "poolboy": {:hex, :poolboy, "1.5.2", "392b007a1693a64540cead79830443abf5762f5d30cf50bc95cb2c1aaafa006b", [:rebar3], [], "hexpm"},
+  "tds": {:hex, :tds, "1.1.6", "8d976c08da6128b042d557033f6136868fad6121849ae0a6014ac0935252ac84", [:mix], [{:db_connection, "~> 1.1", [hex: :db_connection, repo: "hexpm", optional: false]}, {:decimal, "~> 1.4", [hex: :decimal, repo: "hexpm", optional: false]}], "hexpm"},
+  "tds_ecto": {:hex, :tds_ecto, "2.2.1", "550c7e5f5cbf1e25e333770760a647588efe9f9f436da5a92db1b45ae32e713c", [:mix], [{:ecto, ">= 2.0.0", [hex: :ecto, repo: "hexpm", optional: false]}, {:tds, "~> 1.1", [hex: :tds, repo: "hexpm", optional: false]}], "hexpm"},
+}

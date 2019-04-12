@@ -23,7 +23,7 @@ defmodule ConstantLoader do
   @app Mix.Project.config()[:app]
 
   @storage_name Application.get_env(@app, :ets_table_name)
-  @constant_repos Enum.into(Application.get_env(@app, :repo_per_constant_type), %{})
+  @constant_map Enum.into(Application.get_env(@app, :repo_per_constant_type), %{})
 
   require Logger
 
@@ -38,9 +38,15 @@ defmodule ConstantLoader do
 
   @impl true
   def init(_) do
-    Enum.each(@constant_repos, fn {constant_key, constant_repo} ->
-      constant_key
-      |> constant_repo.load_constants()
+    :ets.new(@storage_name, [
+      :named_table,
+      :public,
+      {:read_concurrency, true},
+      {:write_concurrency, true}
+    ])
+
+    Enum.each(@constant_map, fn {constant_key, {constant_repo, constant_module}} ->
+      apply(constant_module, :load_constants, [constant_repo])
       |> Enum.each(fn {key, value} ->
         :ets.insert(@storage_name, {{constant_key, key}, value})
       end)
