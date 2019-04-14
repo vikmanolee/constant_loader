@@ -1,21 +1,21 @@
 # ConstantLoader
 
-**TODO: Add description**
+**Load your constants from your DB**
+
+Use DB tables to fetch {id, atom} or similar constructs to an ETS table for quick reference and enum resolve.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `constant_loader` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `constant_loader` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:constant_loader, "~> 0.1.0"}
+      {:constant_loader, github: "https://gitlab.stoiximan.eu/v.manoli/constant_loader.git"},
   ]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/constant_loader](https://hexdocs.pm/constant_loader).
+## Usage
 
+See tests
