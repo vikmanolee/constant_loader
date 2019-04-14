@@ -1,29 +1,12 @@
 defmodule ConstantLoader do
   @moduledoc """
-  # Constant Loader
-
-  ## How to add a new Constant
-
-  1. config/s_b_state/config.exs
-      - Add name and Repo in `config :ariadne_sbstate, :repo_per_constant_type` line
-  2. lib/ariadne/s_b_state/cqrs/constants/loader.ex
-      - Add name in `@constant_keys` line
-  3. lib/ariadne/s_b_state/db/schemas/constants/
-      - Add schema module in constant schemas folder
-  4. lib/ariadne/s_b_state/db/constants_loader.ex
-      - Add the proper `load_constants/2` function
-  5. lib/ariadne/s_b_state/cqrs/constants/
-      - Add constant module in constants folder^
-
-  ^ Preferably include as many `"get_*"` functions as logical types of mappings are loaded in the Constant.
-  e.g. `ConstantModule.get_name(id)`, `ConstantModule.get_id(name)`
+  Constant Loader
   """
 
   @module __MODULE__
-  @app Mix.Project.config()[:app]
 
-  @storage_name Application.get_env(@app, :ets_table_name)
-  @constant_map Enum.into(Application.get_env(@app, :repo_per_constant_type), %{})
+  @storage_name Application.get_env(:constant_loader, :ets_table_name)
+  @constant_map Enum.into(Application.get_env(:constant_loader, :repo_per_constant_type), %{})
 
   require Logger
 
