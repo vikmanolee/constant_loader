@@ -12,8 +12,8 @@ defmodule Test.Constants.ConstantTwo do
   @spec get_id(atom) :: integer
   def get_id(key), do: get(key)
 
-  def load_constants(repo) do
-    db_results(repo)
+  def constant_map(db_results) do
+    db_results
     |> U.to_map_with_atom_keys()
     |> U.reverse_append_map()
   end

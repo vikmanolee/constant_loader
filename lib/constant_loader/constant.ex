@@ -3,8 +3,11 @@ defmodule ConstantLoader.Constant do
   Base Constant module
 
   `use` this module to create simpler custom constant modules
+
+  A simple `get/1` is implemented by default,
+  but implementing your own `get_*` to distinguish between several key types is advised
   """
-  @callback load_constants(ecto_repo :: Ecto.Repo.t()) :: map
+  @callback constant_map([Ecto.Schema.t()]) :: map
 
   defmacro __using__(key: constant_key, schema: constant_schema) do
     quote do
@@ -14,9 +17,10 @@ defmodule ConstantLoader.Constant do
         ConstantLoader.get(unquote(constant_key), key)
       end
 
-      def db_results(repo) do
+      def load_constants(repo) do
         unquote(constant_schema)
         |> repo.all()
+        |> constant_map()
       end
     end
   end

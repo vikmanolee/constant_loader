@@ -64,24 +64,21 @@ defmodule ConstantOneSchema do
 end
 ```
 
-4. Create a Constant module, implementing a `get/1` and a `load_constants/1`
+4. Create a Constant module, using `ConstantLoader.Constant` and implementing a `constant_map/1`
 
 ```elixir
 defmodule My.Constants.ConstantOne do
   alias ConstantLoader.Utils
 
-  def get(key), do: ConstantLoader.get(:constant_one, key)
-
-  def load_constants(repo) do
-    ConstantOneSchema
-    |> repo.all()
+  def constant_map(db_schemas) do
+    db_schemas
     |> Utils.to_map_with_atom_keys()
     |> Utils.reverse_append_map()
   end
 end
 ```
 
-You can use `ConstantLoader.get/2` and `ConstantLoaderUtils` functions to parse your schemas to a key-value map for the ETS table.
+You can use `ConstantLoaderUtils` functions to parse your schemas to a key-value map for the ETS table.
 
 5. Grab your constant at any point of your app
 
