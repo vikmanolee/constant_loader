@@ -52,7 +52,7 @@ defmodule ConstantLoader do
       end)
     end)
 
-    GenServer.cast(self(), :stop)
+    # GenServer.cast(self(), :stop)
 
     {:ok, nil}
   end
