@@ -45,23 +45,52 @@ defmodule ConstantLoader do
       {:write_concurrency, true}
     ])
 
+    load_constants()
+
+    Logger.info("#{@module} constants have been loaded")
+
+    {:ok, nil}
+  end
+
+  @impl true
+  def handle_cast(:reload, state) do
+    do_reload_constants()
+
+    {:no_reply, state}
+  end
+
+  @impl true
+  def handle_call(:reload, _from, state) do
+    do_reload_constants()
+
+    {:reply, :ok, state}
+  end
+
+  # Internal #
+
+  defp load_constants do
     Enum.each(@constant_map, fn {constant_key, {constant_repo, constant_module}} ->
       apply(constant_module, :load_constants, [constant_repo])
       |> Enum.each(fn {key, value} ->
         :ets.insert(@storage_name, {{constant_key, key}, value})
       end)
     end)
-
-    # GenServer.cast(self(), :stop)
-
-    {:ok, nil}
   end
 
-  @impl true
-  def handle_cast(:stop, state) do
-    Logger.info("#{@module} constants have been loaded (stopping normally)")
+  defp do_reload_constants do
+    :ets.delete_all_objects(@storage_name)
 
-    {:stop, :normal, state}
+    load_constants()
+  end
+
+  # Interface #
+
+  def reload_constants do
+    GenServer.call(@module, :reload)
+  end
+
+  def reload_constants_async do
+    GenServer.cast(@module, :reload)
   end
 
   def get(ets_key, key, default \\ nil)
