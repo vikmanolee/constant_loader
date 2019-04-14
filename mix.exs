@@ -26,7 +26,7 @@ defmodule ConstantLoader.MixProject do
   defp deps do
     [
       {:ecto, "2.2.11",  only: [:test], override: true},
-      {:tds_ecto, "2.2.1", only: [:test]}
+      {:sqlite_ecto2, "~> 2.4.0", only: [:test]}
     ]
   end
 end

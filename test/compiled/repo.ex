@@ -3,5 +3,5 @@ defmodule Test.Repo do
 
     use Ecto.Repo,
     otp_app: Mix.Project.config()[:app],
-    adapter: Tds.Ecto
+    adapter: Sqlite.Ecto2
 end

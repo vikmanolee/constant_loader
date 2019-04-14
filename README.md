@@ -90,6 +90,7 @@ You can use `ConstantLoaderUtils` functions to parse your schemas to a key-value
 
 Run: 
 
+<<<<<<< HEAD
 `sudo apt-get install libsqlite3-dev`
 
 to be able to compile `esqlite` lib
